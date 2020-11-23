@@ -13,7 +13,7 @@
 </head> 	
 
 
-<body id="body" style="background-color: black;">
+<body id="body" style="background-color: black; display: flex;">
 	<div id="Flash" style="width:100%; height: 100%; position: absolute; z-index: 1"></div>
 	<div class="mute" style="display: flex; align-items: center; justify-content: flex-end; position: absolute; z-index: 4; width: 95%; margin-top:2%">
 			<button id="togglemute" type="button">
@@ -27,10 +27,11 @@
 		<div class="title" style="display: flex; align-items: center; justify-content: center; position: absolute; z-index: 3; text-align: center; width: 100%; margin-top:2%">
 			<h1 style="text-transform: uppercase; color: white; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;">Countdown To Flash Player's EOL</h1>
 		</div>
-		<div class="lol" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+		<div class="timer" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
 			<p id="demo" style="color: red; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;"></p>
 		</div>
 	</div>
+	<div class="footer"><a target="_blank" class="footerlink" href="https://www.adobe.com/au/products/flashplayer/end-of-life.html">https://www.adobe.com/au/products/flashplayer/end-of-life.html</a></div>
 	<script>
 	// Set the date we're counting down to
 	var countDownDate = new Date("Dec 31, 2020 23:59:59").getTime();
