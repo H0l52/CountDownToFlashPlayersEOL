@@ -27,9 +27,16 @@
 		<div class="title" style="display: flex; align-items: center; justify-content: center; position: absolute; z-index: 3; text-align: center; width: 100%; margin-top:2%">
 			<h1 style="text-transform: uppercase; color: white; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;">Countdown To Flash Player's EOL</h1>
 		</div>
+		<div id="warning" class="warning" style="display: flex; align-items: center; justify-content: center; position: absolute; z-index: 4; text-align: center; width: 100%;  height: 50%;">
+			<button id="audio" class="abutton" style="color: red; font-size: 2vw; font-weight: 900; margin-top: 2em; font-family: 'Calibri', sans-serif;">Audio not working? Click Here</button>
+		</div>
 		<div class="timer" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
 			<p id="demo" style="color: red; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;"></p>
+
+			
 		</div>
+		
+		
 	</div>
 	<div class="footer"><a target="_blank" class="footerlink" href="https://www.adobe.com/au/products/flashplayer/end-of-life.html">https://www.adobe.com/au/products/flashplayer/end-of-life.html</a></div>
 	<script>
@@ -88,6 +95,21 @@
 			}
 			
 		}, 2000);
+
+
+		document.getElementById('audio').onclick = function() {
+			document.getElementById('audio').classList.remove('abutton')
+			document.getElementById('audio').classList.add('hidden')
+		}
+
+		var timesince = 0
+		var e = setInterval(function() {
+			timesince ++;
+			if (timesince == 10) {
+				document.getElementById('audio').classList.remove('abutton')
+				document.getElementById('audio').classList.add('hidden')
+			}
+		}, 1000)
 		
 		
 		var c = setInterval(function() {

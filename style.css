@@ -72,3 +72,11 @@
 	color: grey;
 	text-decoration: none;
 }
+
+.abutton {
+	z-index: 30;
+	border-width: 0px;
+	background-color: transparent;
+	cursor: pointer;
+	outline:none;
+}
