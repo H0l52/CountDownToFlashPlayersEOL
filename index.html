@@ -101,8 +101,8 @@
 
 				var budio = new Audio('heartbeat.mp3');
 				var laudio = new Audio("clock-tick-tock.mp3");
-				budio.play();
-				laudio.play();
+				// budio.play();
+				// laudio.play();
 				// audio.play();
 				// caudio.play();
 			   var acv = setInterval(function() {
@@ -157,7 +157,6 @@
             		AUTOPLAY = true;
             		document.getElementById('audio').classList.remove('abutton')
 		 			document.getElementById('audio').classList.add('hidden') // Set the global flag to true, indicating we have support.
-		 			console.log('audio.play works just fine here')
         		});
 				audio.play();
 			}
