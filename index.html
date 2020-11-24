@@ -104,6 +104,7 @@
 
 				var budio = new Audio('heartbeat.mp3');
 				var laudio = new Audio("clock-tick-tock.mp3");
+				oscript = true; //im dead inside now yay
 				// budio.play();
 				// laudio.play();
 				// audio.play();
@@ -134,7 +135,7 @@
 	<script>
 		var audio = new Audio('heartbeat.mp3');
 		var caudio = new Audio("clock-tick-tock.mp3");
-		
+		var oscript = false;
 		var muted=false;
 		var crunning = false;
 		var brunning = false;
@@ -161,7 +162,7 @@
 			var b = setInterval(function() {
 				crunning=true;
 				document.getElementById('Flash').classList.toggle('fade');
-				if (muted==false) {
+				if (muted==false && oscript==false) {
 					$(audio).on('play', function() {
 	            		AUTOPLAY = true;
 	            		document.getElementById('audio').classList.remove('abutton')
@@ -179,12 +180,12 @@
 
 			var c = setInterval(function() {
 				brunning = true;
-				if (muted==false) {
-					$(caudio).on('play', function() {
-						console.log('tick')
-					});
+				if (muted==false && oscript==false) {
+					// $(caudio).on('play', function() {
+					// 	console.log('tick')
+					// });
 					caudio.play();
-					
+
 					
 				}
 			}, 1000)
