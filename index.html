@@ -97,7 +97,10 @@
 			  isIEedge === false
 			) {
 			   // is Google Chrome  (chrome fixes itself immediatly after interacting once on a page)
-			} else { 
+			} else if (navigator.userAgent.indexOf('Firefox') !== -1) {
+				//firefox because it does same as chrome. yes i know navigator.useragent is bad but im at a loss for what else i should do
+
+			}else { 
 
 				var budio = new Audio('heartbeat.mp3');
 				var laudio = new Audio("clock-tick-tock.mp3");
@@ -177,9 +180,12 @@
 			var c = setInterval(function() {
 				brunning = true;
 				if (muted==false) {
-
+					$(caudio).on('play', function() {
+						console.log('tick')
+					});
 					caudio.play();
-					console.log('tick')
+					
+					
 				}
 			}, 1000)
 		});
