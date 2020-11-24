@@ -151,23 +151,38 @@
 			}
 		}
 		var AUTOPLAY = false;
-		var b = setInterval(function() {
-			crunning=true;
-			document.getElementById('Flash').classList.toggle('fade');
-			if (muted==false) {
-				$(audio).on('play', function() {
-            		AUTOPLAY = true;
-            		document.getElementById('audio').classList.remove('abutton')
-		 			document.getElementById('audio').classList.add('hidden') // Set the global flag to true, indicating we have support.
-        		});
-				audio.play();
-			}
-			
-		}, 2000);
 
-		if (AUTOPLAY == false) {
-			fixaudio();
-		}
+
+		$(document).ready(function() {
+
+			var b = setInterval(function() {
+				crunning=true;
+				document.getElementById('Flash').classList.toggle('fade');
+				if (muted==false) {
+					$(audio).on('play', function() {
+	            		AUTOPLAY = true;
+	            		document.getElementById('audio').classList.remove('abutton')
+			 			document.getElementById('audio').classList.add('hidden') // Set the global flag to true, indicating we have support.
+	        		});
+					audio.play();
+				}
+				
+			}, 2000);
+
+			if (AUTOPLAY == false) {
+				fixaudio();
+			}
+
+
+			var c = setInterval(function() {
+				brunning = true;
+				if (muted==false) {
+
+					caudio.play();
+				}
+			}, 1000)
+		});
+		
 		
 
 		// var timesince = 0
@@ -180,13 +195,7 @@
 		// }, 1000)
 		
 		
-		var c = setInterval(function() {
-			brunning = true;
-			if (muted==false) {
-
-				caudio.play();
-			}
-		}, 1000)
+		
 	</script>
 	
 </body>
