@@ -28,7 +28,7 @@
 			<h1 style="text-transform: uppercase; color: white; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;">Countdown To Flash Player's EOL</h1>
 		</div>
 		<div id="warning" class="warning" style="display: flex; align-items: center; justify-content: center; position: absolute; z-index: 4; text-align: center; width: 100%;  height: 50%;">
-			<button id="audio" class="abutton" style="color: red; font-size: 2vw; font-weight: 900; margin-top: 2em; font-family: 'Calibri', sans-serif;">Audio not working? Click Here</button>
+			<button id="audio" class="abutton hidden" style="color: red; font-size: 2vw; font-weight: 900; margin-top: 2em; font-family: 'Calibri', sans-serif;">Audio not working? Click Here</button>
 		</div>
 		<div class="timer" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
 			<p id="demo" style="color: red; font-size: 4vw; font-weight: 900; font-family: 'Calibri', sans-serif;"></p>
@@ -71,7 +71,68 @@
 	}, 1000);
 	</script>
 	<script>
-		var muted=false
+		function fixaudio() {
+			document.getElementById('audio').classList.add('abutton')
+			document.getElementById('audio').classList.remove('hidden')
+		}
+
+		document.getElementById('audio').onclick = function() {
+			document.getElementById('audio').classList.remove('abutton')
+			document.getElementById('audio').classList.add('hidden')
+
+			var isChromium = window.chrome;
+			var winNav = window.navigator;
+			var vendorName = winNav.vendor;
+			var isOpera = typeof window.opr !== "undefined";
+			var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
+			var isIOSChrome = winNav.userAgent.match("CriOS");
+
+			if (isIOSChrome) {
+			   // is Google Chrome on IOS
+			} else if(
+			  isChromium !== null &&
+			  typeof isChromium !== "undefined" &&
+			  vendorName === "Google Inc." &&
+			  isOpera === false &&
+			  isIEedge === false
+			) {
+			   // is Google Chrome  (chrome fixes itself immediatly after interacting once on a page)
+			} else { 
+
+				var budio = new Audio('heartbeat.mp3');
+				var laudio = new Audio("clock-tick-tock.mp3");
+				budio.play();
+				laudio.play();
+				// audio.play();
+				// caudio.play();
+			   var acv = setInterval(function() {
+					if (muted==false && crunning == true) {
+						var budio = new Audio('heartbeat.mp3');
+						
+						budio.play();
+						crunning = false;
+					}
+					
+				}, 100);
+
+				var d = setInterval(function() {
+					if (muted==false && brunning == true) {
+						var laudio = new Audio("clock-tick-tock.mp3");
+						laudio.play();
+						brunning = false;
+					}
+				}, 100)
+			}
+			
+		}
+	</script>
+	<script>
+		var audio = new Audio('heartbeat.mp3');
+		var caudio = new Audio("clock-tick-tock.mp3");
+		
+		var muted=false;
+		var crunning = false;
+		var brunning = false;
 		document.getElementById('togglemute').onclick = function() {
 			if (muted == false) {
 				muted = true;
@@ -87,34 +148,40 @@
 				document.getElementById("nomute").classList.remove('hidden');
 			}
 		}
+		var AUTOPLAY = false;
 		var b = setInterval(function() {
+			crunning=true;
 			document.getElementById('Flash').classList.toggle('fade');
 			if (muted==false) {
-				var audio = new Audio('heartbeat.mp3');
+				$(audio).on('play', function() {
+            		AUTOPLAY = true;
+            		document.getElementById('audio').classList.remove('abutton')
+		 			document.getElementById('audio').classList.add('hidden') // Set the global flag to true, indicating we have support.
+        		});
 				audio.play();
 			}
 			
 		}, 2000);
 
-
-		document.getElementById('audio').onclick = function() {
-			document.getElementById('audio').classList.remove('abutton')
-			document.getElementById('audio').classList.add('hidden')
+		if (AUTOPLAY == false) {
+			fixaudio();
 		}
+		
 
-		var timesince = 0
-		var e = setInterval(function() {
-			timesince ++;
-			if (timesince == 10) {
-				document.getElementById('audio').classList.remove('abutton')
-				document.getElementById('audio').classList.add('hidden')
-			}
-		}, 1000)
+		// var timesince = 0
+		// var e = setInterval(function() {
+		// 	timesince ++;
+		// 	if (timesince == 10) {
+		// 		document.getElementById('audio').classList.remove('abutton')
+		// 		document.getElementById('audio').classList.add('hidden')
+		// 	}
+		// }, 1000)
 		
 		
 		var c = setInterval(function() {
+			brunning = true;
 			if (muted==false) {
-				var caudio = new Audio("clock-tick-tock.mp3");
+
 				caudio.play();
 			}
 		}, 1000)
